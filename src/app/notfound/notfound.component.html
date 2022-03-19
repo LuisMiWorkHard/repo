@@ -1,0 +1,18 @@
+<p-blockUI [blocked]="blocked">
+    <div class="loading" style="padding: 20px;">
+        <div align="center">
+            <img src="assets/img/logo.png" />
+        </div>
+        <div style="display: flex;align-items: center;">
+            <div style="margin-right: 5px;">
+                <i class="pi pi-exclamation-circle" style="font-size: 3rem"></i>
+            </div>
+            <div>
+                <p style="font-size: 16px;">El enlace al que intentas acceder no es válido.</p>
+            </div>
+        </div>
+        <div>
+            <button pButton type="button" (click)="inicio()" icon="pi pi-home" label="Inicio"></button>
+        </div>
+    </div>
+</p-blockUI>

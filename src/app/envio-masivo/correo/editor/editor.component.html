@@ -1,0 +1,852 @@
+<div #wrapper class="wrapper">
+  <div class="container main">
+      <div class="p-0">
+        <div class="contenedor-column">
+          <div class="contenedor-html">
+            <div class="paleta-html">
+              <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%" id="paleta">
+                <tr>
+                    <td align="center" valign="center">
+                        <table border="0" cellpadding="0" cellspacing="0" width="80%" id="contenido">
+                            <!--CONTENIDO-->
+                            <tr>
+                                <td align="center" valign="center" width="100%" id="td-contenido">
+                                    <!--EDITABLE-->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="header-table">
+                                        <tr>
+                                            <td align="center" valign="center" width="50%" id="td-1">
+                                            </td>
+                                            <td align="center" valign="center" width="50%" id="td-2">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div id="body-table" style="width: 100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td align="center" valign="center" width="100%" id="td-3">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td align="center" valign="center" width="50%" id="td-4">
+                                                </td>
+                                                <td align="center" valign="center" width="50%" id="td-5">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td align="center" valign="center" width="100%" id="td-6">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="footer-table">
+                                        <tr>
+                                            <td align="center" valign="center" width="100%" id="td-7">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="sidebar">
+    <div class="grid title-sidebar">
+      <div class="col-12 flex justify-content-between align-items-center mt-3 pb-0">
+        <div class="block">
+          <span *ngIf="display_delete" class="ml-4 btn-delete" (click)="clickDeleteElement()"><span class="pi pi-trash mr-2"></span>Eliminar</span>
+        </div>
+        <span class="mr-4" (click)="clickCloseToggle()">[X Cerrar]</span>
+      </div>
+      <div class="panel-diseno col-12" id="p-esquema">
+        <p-tabView>
+          <p-tabPanel header="Apariencia">
+            <p-panel header="General" [toggleable]="true" [collapsed]="false">
+              <div class="grid">
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Color</span>
+                  <p-colorPicker [(ngModel)]="gridSelectedList.COLOR" (onChange)="onColorGridChange($event)"></p-colorPicker>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Relleno</span>
+                  <div>
+                    <span class="mr-2">Más opciones</span>
+                    <p-inputSwitch [(ngModel)]="gridSelectedList.VISIBLE_PADDING_DETAIL" (onChange)="switchPaddingGridChange($event)"></p-inputSwitch>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="!gridSelectedList.VISIBLE_PADDING_DETAIL">
+                  <div class="grid">
+                    <div class="col-12">
+                      <p-inputNumber (onInput)="onPaddingGridInput($event)" [(ngModel)]="gridSelectedList.PADDING" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999" >
+                      </p-inputNumber>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="gridSelectedList.VISIBLE_PADDING_DETAIL">
+                  <div class="grid">
+                    <div class="col-6 details">
+                      <span>Arriba</span>
+                      <div>
+                        <p-inputNumber (onInput)="onPaddingTopGridInput($event)" [(ngModel)]="gridSelectedList.PADDING_TOP" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                        decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                        </p-inputNumber>
+                      </div>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Derecha</span>
+                      <p-inputNumber (onInput)="onPaddingRightGridInput($event)" [(ngModel)]="gridSelectedList.PADDING_RIGHT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Izquierda</span>
+                      <p-inputNumber (onInput)="onPaddingLeftGridInput($event)" [(ngModel)]="gridSelectedList.PADDING_LEFT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Abajo</span>
+                      <p-inputNumber (onInput)="onPaddingBottomGridInput($event)" [(ngModel)]="gridSelectedList.PADDING_BOTTOM" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Borde redondeado</span>
+                  <div>
+                    <span class="mr-2">Más opciones</span>
+                    <p-inputSwitch [(ngModel)]="gridSelectedList.VISIBLE_BORDER_RADIUS_DETAIL" (onChange)="switchBorderRadiusGridChange($event)"></p-inputSwitch>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="!gridSelectedList.VISIBLE_BORDER_RADIUS_DETAIL">
+                  <div class="grid">
+                    <div class="col-12">
+                      <p-inputNumber (onInput)="onGridBorderRadiusInput($event)" [(ngModel)]="gridSelectedList.BORDER_RADIUS" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99" >
+                      </p-inputNumber>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="gridSelectedList.VISIBLE_BORDER_RADIUS_DETAIL">
+                  <div class="grid">
+                    <div class="col-6 details">
+                      <span>Superior Izq</span>
+                      <div>
+                        <p-inputNumber (onInput)="onGridBorderRadiusTopLeftInput($event)" [(ngModel)]="gridSelectedList.BORDER_RADIUS_TOP_LEFT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                        decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99">
+                        </p-inputNumber>
+                      </div>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Superior Der</span>
+                      <p-inputNumber (onInput)="onGridBorderRadiusTopRightInput($event)" [(ngModel)]="gridSelectedList.BORDER_RADIUS_TOP_RIGHT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Inferior Izq</span>
+                      <p-inputNumber (onInput)="onGridBorderRadiusBottomLeftInput($event)" [(ngModel)]="gridSelectedList.BORDER_RADIUS_BOTTOM_LEFT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Inferior Der</span>
+                      <p-inputNumber (onInput)="onGridBorderRadiusBottomRightInput($event)" [(ngModel)]="gridSelectedList.BORDER_RADIUS_BOTTOM_RIGHT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99">
+                      </p-inputNumber> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+          </p-tabPanel>
+          <p-tabPanel header="Contenido" [selected]="true">
+            <p-panel header="Estructuras" [toggleable]="true" [collapsed]="true">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </p-panel>
+            <p-panel header="Elementos" [toggleable]="true" [collapsed]="false">
+              <div class="grid">
+                <div class="col-4">
+                  <p-card (click)="addImagen()">
+                      <div class="flex justify-content-center">
+                        <span class="image block"></span>
+                      </div>
+                      <span class="block card-title">Imagen</span>
+                  </p-card>
+                </div>
+                <div class="col-4">
+                  <p-card (click)="addTexto()">
+                    <div class="flex justify-content-center">
+                      <span class="text block"></span>
+                    </div>
+                    <span class="block card-title">Texto</span>
+                  </p-card>
+                </div>
+                <div class="col-4">
+                  <p-card (click)="addBoton()">
+                    <div class="flex justify-content-center">
+                      <span class="button block"></span>
+                    </div>
+                    <span class="block card-title">Botón</span>
+                  </p-card>
+                </div>
+                <!-- <div class="col-4">
+                  <p-card (click)="addHipervinculo()">
+                    <div class="flex justify-content-center">
+                      <span class="link block"></span>
+                    </div>
+                    <span class="block card-title">Enlace</span>
+                  </p-card>
+                </div> -->
+              </div>
+            </p-panel>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+      <div class="panel-diseno col-12 mb-5 hide-animation pt-0" id="p-imagen">
+        <div class="grid">
+          <div class="col-12">
+            <p-panel header="Imagen" [toggleable]="true" [collapsed]="false">
+              <div class="grid">
+                <div class="col-12">
+                  <span>Imagen Url</span>
+                  <input type="text" class="p-inputtext-sm w-full mt-2" pInputText />
+                </div>
+                <div class="col-12 flex justify-content-end align-items-center">
+                  <!-- [loading]="loading[0]" (onClick)="load(0)" -->
+                  <p-button label="Subir Imagen" icon="pi pi-upload" ></p-button>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Ancho automatico</span>
+                  <p-inputSwitch (onChange)="switchWidthImageChange($event)" [(ngModel)]="imgSelectedList.VISIBLE_AUTO_WIDTH"></p-inputSwitch>
+                </div>
+                <div class="col-12" *ngIf="imgSelectedList.VISIBLE_AUTO_WIDTH">
+                  <div class="grid">
+                    <div class="col-10 mt-2">
+                      <p-slider (onChange)="sliderWidthImageChange($event)" [(ngModel)]="imgSelectedList.WIDTH" [min]="20" [max]="100"></p-slider>
+                    </div>
+                    <div class="col-2">
+                      <span>{{imgSelectedList.WIDTH}}{{imgSelectedList.WIDTH_UNIT}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12">
+                  <div class="grid">
+                    <div class="col-4 flex align-items-center">
+                      <span>Alinear</span>
+                    </div>
+                    <div class="col-8 flex justify-content-end">
+                      <p-toggleButton class="ml-1" [(ngModel)]="imgSelectedList.PARENT_ALIGN_LEFT" onIcon="pi pi-align-left" offIcon="pi pi-align-left" (onChange)="alignClick('left')"></p-toggleButton>
+                      <p-toggleButton class="ml-1" [(ngModel)]="imgSelectedList.PARENT_ALIGN_RIGHT" onIcon="pi pi-align-right" offIcon="pi pi-align-right" (onChange)="alignClick('right')"></p-toggleButton>
+                      <p-toggleButton class="ml-1" [(ngModel)]="imgSelectedList.PARENT_ALIGN_CENTER" onIcon="pi pi-align-center" offIcon="pi pi-align-center" (onChange)="alignClick('center')"></p-toggleButton>
+                      <p-toggleButton class="ml-1" [(ngModel)]="imgSelectedList.PARENT_ALIGN_JUSTIFY" onIcon="pi pi-align-justify" offIcon="pi pi-align-justify" (onChange)="alignClick('justify')"></p-toggleButton>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+            <p-panel header="Acción" [toggleable]="true" [collapsed]="false">
+              <div class="grid">
+                <div class="col-12">
+                  <span>Link de imagen</span>
+                </div>
+                <div class="col-12">
+                  <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">URL</span>
+                    <input type="text" pInputText placeholder="sitio web" [(ngModel)]="imgSelectedList.URL" (keyup)="urlKeyPress()">     
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="p-inputgroup">
+                      <span class="p-inputgroup-addon">Target</span>
+                      <p-dropdown id="p-imagen-target" [options]="targets" [(ngModel)]="imgSelectedList.TARGET_URL" optionLabel="TEXTO" (onChange)="targetUrlChange()"></p-dropdown>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+            <p-panel header="General" [toggleable]="true" [collapsed]="false" class="mt-2">
+              <div class="grid">
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Relleno</span>
+                  <div>
+                    <span class="mr-2">Más opciones</span>
+                    <p-inputSwitch [(ngModel)]="imgSelectedList.VISIBLE_PADDING_DETAIL" (onChange)="switchPaddingImageChange($event)"></p-inputSwitch>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="!imgSelectedList.VISIBLE_PADDING_DETAIL">
+                  <div class="grid">
+                    <div class="col-12">
+                      <p-inputNumber (onInput)="onPaddingInput($event)" [(ngModel)]="imgSelectedList.PADDING" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999" >
+                      </p-inputNumber>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="imgSelectedList.VISIBLE_PADDING_DETAIL">
+                  <div class="grid">
+                    <div class="col-6 details">
+                      <span>Arriba</span>
+                      <div>
+                        <p-inputNumber (onInput)="onPaddingTopInput($event)" [(ngModel)]="imgSelectedList.PADDING_TOP" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                        decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                        </p-inputNumber>
+                      </div>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Derecha</span>
+                      <p-inputNumber (onInput)="onPaddingRightInput($event)" [(ngModel)]="imgSelectedList.PADDING_RIGHT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Izquierda</span>
+                      <p-inputNumber (onInput)="onPaddingLeftInput($event)" [(ngModel)]="imgSelectedList.PADDING_LEFT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Abajo</span>
+                      <p-inputNumber (onInput)="onPaddingBottomInput($event)" [(ngModel)]="imgSelectedList.PADDING_BOTTOM" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+          </div>
+        </div>
+      </div>
+      <div class="panel-diseno col-12 mb-5 hide-animation pt-0" id="p-texto">
+        <div class="grid">
+          <div class="col-12">
+            <p-panel header="Texto" [toggleable]="true" [collapsed]="false">
+              <div class="grid">
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Color</span>
+                  <p-colorPicker [(ngModel)]="textoSelectedList.COLOR" (onChange)="onColorChange($event)"></p-colorPicker>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12">
+                  <span>Estilo de fuente</span>
+                </div>
+                <div class="col-12">
+                  <p-dropdown id="p-imagen-target" [options]="fuentes" [(ngModel)]="selectedFuente" optionLabel="TEXTO" (onChange)="onFontSelectedChange()"></p-dropdown>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12">
+                  <span>Tamaño de fuente (px)</span>
+                </div>
+                <div class="col-12">
+                  <p-inputNumber (onInput)="onFontSizeInput($event)" (ngModelChange)="onFontSizeModelChange($event)" [(ngModel)]="textoSelectedList.TAMANO" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="MAX_LENGHT_2" [min]="MIN_VALUE_8" [max]="MAX_VALUE_99">
+                  </p-inputNumber>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12">
+                  <div class="grid">
+                    <div class="col-4 flex align-items-center">
+                      <span>Alinear</span>
+                    </div>
+                    <div class="col-8 flex justify-content-end">
+                      <p-toggleButton class="ml-1" [(ngModel)]="textoSelectedList.PARENT_ALIGN_LEFT" onIcon="pi pi-align-left" offIcon="pi pi-align-left" (onChange)="alignTextoClick('left')"></p-toggleButton>
+                      <p-toggleButton class="ml-1" [(ngModel)]="textoSelectedList.PARENT_ALIGN_RIGHT" onIcon="pi pi-align-right" offIcon="pi pi-align-right" (onChange)="alignTextoClick('right')"></p-toggleButton>
+                      <p-toggleButton class="ml-1" [(ngModel)]="textoSelectedList.PARENT_ALIGN_CENTER" onIcon="pi pi-align-center" offIcon="pi pi-align-center" (onChange)="alignTextoClick('center')"></p-toggleButton>
+                      <p-toggleButton class="ml-1" [(ngModel)]="textoSelectedList.PARENT_ALIGN_JUSTIFY" onIcon="pi pi-align-justify" offIcon="pi pi-align-justify" (onChange)="alignTextoClick('justify')"></p-toggleButton>
+                      <!-- <p-button class="min-w-1" styleClass="p-button-outlined" (onClick)="alignTextoClick('left')">
+                        <ng-template pTemplate="content">
+                          <span class="pi pi-align-left"></span>
+                        </ng-template>
+                      </p-button>
+                      <p-button class="min-w-1" styleClass="p-button-outlined" (onClick)="alignTextoClick('center')">
+                        <ng-template pTemplate="content">
+                          <span class="pi pi-align-center"></span>
+                        </ng-template>
+                      </p-button>
+                      <p-button class="min-w-1" styleClass="p-button-outlined" (onClick)="alignTextoClick('right')">
+                        <ng-template pTemplate="content">
+                          <span class="pi pi-align-right"></span>
+                        </ng-template>
+                      </p-button>
+                      <p-button class="min-w-1" styleClass="p-button-outlined" (onClick)="alignTextoClick('justify')">
+                        <ng-template pTemplate="content">
+                          <span class="pi pi-align-justify"></span>
+                        </ng-template>
+                      </p-button> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12">
+                  <span>Valor de Texto</span>
+                  <div class="mt-3">
+                    <p-editor (onTextChange)="onTextoChanged($event)" [(ngModel)]="textoSelectedList.TEXTO" [style]="{'height':'220px'}">
+                      <ng-template pTemplate="header">
+                        <span class="ql-formats">
+                            <button type="button" class="ql-bold" aria-label="Bold"></button>
+                            <button type="button" class="ql-italic" aria-label="Italic"></button>
+                            <button type="button" class="ql-underline" aria-label="Underline"></button>
+                        </span>
+                        <span class="ql-formats">
+                          <button class="ql-link" aria-label="Inserte link" tabindex="-1"></button>
+                        </span>
+                        <span class="ql-formats">
+                          <select class="ql-color" tabindex="-1"></select>
+                          <select class="ql-background" tabindex="-1"></select>
+                        </span>
+                        <div class="mt-2">
+                          <div class="grid">
+                            <div class="col-10">
+                              <span class="p-float-label">
+                                <p-dropdown id="p-imagen-target" [options]="variables" [(ngModel)]="selectedVariable" optionLabel="TEXTO"></p-dropdown>
+                                <label for="dropdown">Insertar Variable</label>
+                              </span>
+                            </div>
+                            <div class="col-2">
+                              <button type="button" class="pi pi-plus btn-variable" (click)="addVaribleClick()"></button>
+                            </div>
+                          </div>
+                        </div>
+                    </ng-template>
+                    </p-editor>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+            <p-panel header="General" [toggleable]="true" [collapsed]="false" class="mt-2">
+              <div class="grid">
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Relleno</span>
+                  <div>
+                    <span class="mr-2">Más opciones</span>
+                    <p-inputSwitch [(ngModel)]="textoSelectedList.VISIBLE_PADDING_DETAIL" (onChange)="switchPaddingTextoChange($event)"></p-inputSwitch>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="!textoSelectedList.VISIBLE_PADDING_DETAIL">
+                  <div class="grid">
+                    <div class="col-12">
+                      <p-inputNumber (onInput)="onPaddingTextoInput($event)" [(ngModel)]="textoSelectedList.PADDING" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999" >
+                      </p-inputNumber>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="textoSelectedList.VISIBLE_PADDING_DETAIL">
+                  <div class="grid">
+                    <div class="col-6 details">
+                      <span>Arriba</span>
+                      <div>
+                        <p-inputNumber (onInput)="onPaddingTopTextoInput($event)" [(ngModel)]="textoSelectedList.PADDING_TOP" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                        decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                        </p-inputNumber>
+                      </div>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Derecha</span>
+                      <p-inputNumber (onInput)="onPaddingRightTextoInput($event)" [(ngModel)]="textoSelectedList.PADDING_RIGHT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Izquierda</span>
+                      <p-inputNumber (onInput)="onPaddingLeftTextoInput($event)" [(ngModel)]="textoSelectedList.PADDING_LEFT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Abajo</span>
+                      <p-inputNumber (onInput)="onPaddingBottomTextoInput($event)" [(ngModel)]="textoSelectedList.PADDING_BOTTOM" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+          </div>
+        </div>
+      </div>
+      <div class="panel-diseno col-12 mb-5 hide-animation pt-0" id="p-boton">
+        <div class="grid">
+          <div class="col-12">
+            <p-panel header="Acción" [toggleable]="true" [collapsed]="false">
+              <div class="grid">
+                <div class="col-12">
+                  <span>Link de botón</span>
+                </div>
+                <div class="col-12">
+                  <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">URL</span>
+                    <input type="text" pInputText placeholder="sitio web" [(ngModel)]="botonSelectedList.URL" (keyup)="urlButtonKeyPress()">     
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="p-inputgroup">
+                      <span class="p-inputgroup-addon">Target</span>
+                      <p-dropdown id="p-imagen-target" [options]="targets" [(ngModel)]="botonSelectedList.TARGET_URL" optionLabel="TEXTO" (onChange)="targetUrlButtonChange()"></p-dropdown>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+            <p-panel header="Botón opciones" [toggleable]="true" [collapsed]="false">
+              <div class="grid">
+                <div class="col-12">
+                  <span>Texto</span>
+                </div>
+                <div class="col-12">
+                  <input id="textButton" type="text" class="w-full" pInputText (keyup)="onTextoButtonChanged($event)" [(ngModel)]="botonSelectedList.TEXTO"/>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12">
+                  <span>Estilo de fuente</span>
+                </div>
+                <div class="col-12">
+                  <p-dropdown id="p-imagen-target" [options]="fuentes" [(ngModel)]="botonSelectedList.FONT" optionLabel="TEXTO" (onChange)="onButtonFontSelectedChange()"></p-dropdown>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12">
+                  <span>Tamaño de fuente (px)</span>
+                </div>
+                <div class="col-12">
+                  <p-inputNumber (onInput)="onFontSizeButtonInput($event)" (ngModelChange)="onFontSizeButtonModelChange($event)" [(ngModel)]="botonSelectedList.FONT_SIZE" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="MAX_LENGHT_2" [min]="MIN_VALUE_8" [max]="MAX_VALUE_99">
+                  </p-inputNumber>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12">
+                  <span>Colores</span>
+                  <div class="grid">
+                    <div class="col-6 d-grid">
+                      <span class="mb-2">Texto</span>
+                      <p-colorPicker [(ngModel)]="botonSelectedList.COLOR" (onChange)="onColorTextButtonChange($event)"></p-colorPicker>
+                    </div>
+                    <div class="col-6 d-grid">
+                      <span class="mb-2">Fondo</span>
+                      <p-colorPicker [(ngModel)]="botonSelectedList.BACKGROUND_COLOR" (onChange)="onColorBackgroundButtonChange($event)"></p-colorPicker>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Ancho automatico</span>
+                  <p-inputSwitch (onChange)="switchWidthButtonChange($event)" [(ngModel)]="botonSelectedList.VISIBLE_AUTO_WIDTH"></p-inputSwitch>
+                </div>
+                <div class="col-12" *ngIf="botonSelectedList.VISIBLE_AUTO_WIDTH">
+                  <div class="grid">
+                    <div class="col-10 mt-2">
+                      <p-slider (onChange)="sliderWidthButtonChange($event)" [(ngModel)]="botonSelectedList.WIDTH" [min]="20" [max]="100"></p-slider>
+                    </div>
+                    <div class="col-2">
+                      <span>{{botonSelectedList.WIDTH}}{{botonSelectedList.WIDTH_UNIT}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12">
+                  <div class="grid">
+                    <div class="col-4 flex align-items-center">
+                      <span>Alinear</span>
+                    </div>
+                    <div class="col-8 flex justify-content-end">
+                      <p-toggleButton class="ml-1" [(ngModel)]="botonSelectedList.PARENT_ALIGN_LEFT" onIcon="pi pi-align-left" offIcon="pi pi-align-left" (onChange)="alignTextoButtonClick('left')"></p-toggleButton>
+                      <p-toggleButton class="ml-1" [(ngModel)]="botonSelectedList.PARENT_ALIGN_RIGHT" onIcon="pi pi-align-right" offIcon="pi pi-align-right" (onChange)="alignTextoButtonClick('right')"></p-toggleButton>
+                      <p-toggleButton class="ml-1" [(ngModel)]="botonSelectedList.PARENT_ALIGN_CENTER" onIcon="pi pi-align-center" offIcon="pi pi-align-center" (onChange)="alignTextoButtonClick('center')"></p-toggleButton>
+                      <p-toggleButton class="ml-1" [(ngModel)]="botonSelectedList.PARENT_ALIGN_JUSTIFY" onIcon="pi pi-align-justify" offIcon="pi pi-align-justify" (onChange)="alignTextoButtonClick('justify')"></p-toggleButton>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+            <p-panel header="Espaciado" [toggleable]="true" [collapsed]="false" class="mt-2">
+              <div class="grid">
+                <!-- <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Alto de linea</span>
+                  <div class="details">
+                    <p-inputNumber (onInput)="onPaddingTopInput($event)" [(ngModel)]="imgSelectedList.PADDING_TOP" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                          decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                    </p-inputNumber>
+                  </div>
+                </div> -->
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Relleno</span>
+                  <div>
+                    <span class="mr-2">Más opciones</span>
+                    <p-inputSwitch [(ngModel)]="botonSelectedList.VISIBLE_PADDING_DETAIL" (onChange)="switchPaddingButtonChange($event)"></p-inputSwitch>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="!botonSelectedList.VISIBLE_PADDING_DETAIL">
+                  <div class="grid">
+                    <div class="col-12">
+                      <p-inputNumber (onInput)="onButtonPaddingInput($event)" [(ngModel)]="botonSelectedList.PADDING" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999" >
+                      </p-inputNumber>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="botonSelectedList.VISIBLE_PADDING_DETAIL">
+                  <div class="grid">
+                    <div class="col-6 details">
+                      <span>Arriba</span>
+                      <div>
+                        <p-inputNumber (onInput)="onButtonPaddingTopInput($event)" [(ngModel)]="botonSelectedList.PADDING_TOP" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                        decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                        </p-inputNumber>
+                      </div>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Derecha</span>
+                      <p-inputNumber (onInput)="onButtonPaddingRightInput($event)" [(ngModel)]="botonSelectedList.PADDING_RIGHT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Izquierda</span>
+                      <p-inputNumber (onInput)="onButtonPaddingLeftInput($event)" [(ngModel)]="botonSelectedList.PADDING_LEFT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Abajo</span>
+                      <p-inputNumber (onInput)="onButtonPaddingBottomInput($event)" [(ngModel)]="botonSelectedList.PADDING_BOTTOM" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Borde</span>
+                  <div>
+                    <span class="mr-2">Más opciones</span>
+                    <p-inputSwitch [(ngModel)]="botonSelectedList.VISIBLE_BORDER_DETAIL" (onChange)="switchBorderButtonChange($event)"></p-inputSwitch>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="!botonSelectedList.VISIBLE_BORDER_DETAIL">
+                  <div class="grid">
+                    <div class="col-12">
+                      <p-dropdown id="p-imagen-target" [options]="bordes" [(ngModel)]="botonSelectedList.BORDER_STYLE" optionLabel="TEXTO" (onChange)="BorderButtonStyleChange()"></p-dropdown>
+                    </div>
+                    <div class="col-12">
+                      <div class="grid">
+                        <div class="col-8 details flex align-items-center">
+                          <p-inputNumber (onInput)="onButtonBorderInput($event)" [(ngModel)]="botonSelectedList.BORDER" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                          decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99" >
+                          </p-inputNumber>
+                        </div>
+                        <div class="col-4 flex align-items-center">
+                          <p-colorPicker [(ngModel)]="botonSelectedList.BORDER_COLOR" (onChange)="onColorBorderButtonChange($event)"></p-colorPicker>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="botonSelectedList.VISIBLE_BORDER_DETAIL">
+                  <div class="grid">
+                    <div class="col-12">
+                      <span>Arriba</span>
+                    </div>
+                    <div class="col-12">
+                      <p-dropdown id="p-imagen-target" [options]="bordes" [(ngModel)]="botonSelectedList.BORDER_TOP_STYLE" optionLabel="TEXTO" (onChange)="BorderTopButtonStyleChange()"></p-dropdown>
+                    </div>
+                    <div class="col-12">
+                      <div class="grid">
+                        <div class="col-8 details flex align-items-center">
+                          <p-inputNumber (onInput)="onButtonBorderTopInput($event)" [(ngModel)]="botonSelectedList.BORDER_TOP" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                          decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999" >
+                          </p-inputNumber>
+                        </div>
+                        <div class="col-4 flex align-items-center">
+                          <p-colorPicker [(ngModel)]="botonSelectedList.BORDER_TOP_COLOR" (onChange)="onColorBorderTopButtonChange($event)"></p-colorPicker>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid">
+                    <div class="col-12">
+                      <span>Derecha</span>
+                    </div>
+                    <div class="col-12">
+                      <p-dropdown id="p-imagen-target" [options]="bordes" [(ngModel)]="botonSelectedList.BORDER_RIGHT_STYLE" optionLabel="TEXTO" (onChange)="BorderRightButtonStyleChange()"></p-dropdown>
+                    </div>
+                    <div class="col-12">
+                      <div class="grid">
+                        <div class="col-8 details flex align-items-center">
+                          <p-inputNumber (onInput)="onButtonBorderRightInput($event)" [(ngModel)]="botonSelectedList.BORDER_RIGHT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                          decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999" >
+                          </p-inputNumber>
+                        </div>
+                        <div class="col-4 flex align-items-center">
+                          <p-colorPicker [(ngModel)]="botonSelectedList.BORDER_RIGHT_COLOR" (onChange)="onColorBorderRightButtonChange($event)"></p-colorPicker>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid">
+                    <div class="col-12">
+                      <span>Izquierda</span>
+                    </div>
+                    <div class="col-12">
+                      <p-dropdown id="p-imagen-target" [options]="bordes" [(ngModel)]="botonSelectedList.BORDER_LEFT_STYLE" optionLabel="TEXTO" (onChange)="BorderLeftButtonStyleChange()"></p-dropdown>
+                    </div>
+                    <div class="col-12">
+                      <div class="grid">
+                        <div class="col-8 details flex align-items-center">
+                          <p-inputNumber (onInput)="onButtonBorderLeftInput($event)" [(ngModel)]="botonSelectedList.BORDER_LEFT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                          decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999" >
+                          </p-inputNumber>
+                        </div>
+                        <div class="col-4 flex align-items-center">
+                          <p-colorPicker [(ngModel)]="botonSelectedList.BORDER_LEFT_COLOR" (onChange)="onColorBorderLeftButtonChange($event)"></p-colorPicker>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid">
+                    <div class="col-12">
+                      <span>Abajo</span>
+                    </div>
+                    <div class="col-12">
+                      <p-dropdown id="p-imagen-target" [options]="bordes" [(ngModel)]="botonSelectedList.BORDER_BOTTOM_STYLE" optionLabel="TEXTO" (onChange)="BorderBottomButtonStyleChange()"></p-dropdown>
+                    </div>
+                    <div class="col-12">
+                      <div class="grid">
+                        <div class="col-8 details flex align-items-center">
+                          <p-inputNumber (onInput)="onButtonBorderBottomInput($event)" [(ngModel)]="botonSelectedList.BORDER_BOTTOM" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                          decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999" >
+                          </p-inputNumber>
+                        </div>
+                        <div class="col-4 flex align-items-center">
+                          <p-colorPicker [(ngModel)]="botonSelectedList.BORDER_BOTTOM_COLOR" (onChange)="onColorBorderBottomButtonChange($event)"></p-colorPicker>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12"><hr></div>
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Borde redondeado</span>
+                  <div>
+                    <span class="mr-2">Más opciones</span>
+                    <p-inputSwitch [(ngModel)]="botonSelectedList.VISIBLE_BORDER_RADIUS_DETAIL" (onChange)="switchBorderRadiusButtonChange($event)"></p-inputSwitch>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="!botonSelectedList.VISIBLE_BORDER_RADIUS_DETAIL">
+                  <div class="grid">
+                    <div class="col-12">
+                      <p-inputNumber (onInput)="onButtonBorderRadiusInput($event)" [(ngModel)]="botonSelectedList.BORDER_RADIUS" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99" >
+                      </p-inputNumber>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="botonSelectedList.VISIBLE_BORDER_RADIUS_DETAIL">
+                  <div class="grid">
+                    <div class="col-6 details">
+                      <span>Superior Izq</span>
+                      <div>
+                        <p-inputNumber (onInput)="onButtonBorderRadiusTopLeftInput($event)" [(ngModel)]="botonSelectedList.BORDER_RADIUS_TOP_LEFT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                        decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99">
+                        </p-inputNumber>
+                      </div>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Superior Der</span>
+                      <p-inputNumber (onInput)="onButtonBorderRadiusTopRightInput($event)" [(ngModel)]="botonSelectedList.BORDER_RADIUS_TOP_RIGHT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Inferior Izq</span>
+                      <p-inputNumber (onInput)="onButtonBorderRadiusBottomLeftInput($event)" [(ngModel)]="botonSelectedList.BORDER_RADIUS_BOTTOM_LEFT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Inferior Der</span>
+                      <p-inputNumber (onInput)="onButtonBorderRadiusBottomRightInput($event)" [(ngModel)]="botonSelectedList.BORDER_RADIUS_BOTTOM_RIGHT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="2" [min]="0" [max]="99">
+                      </p-inputNumber> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+            <p-panel header="General" [toggleable]="true" [collapsed]="false" class="mt-2">
+              <div class="grid">
+                <div class="col-12 flex justify-content-between align-items-center">
+                  <span>Relleno contenedor</span>
+                  <div>
+                    <span class="mr-2">Más opciones</span>
+                    <p-inputSwitch [(ngModel)]="botonSelectedList.VISIBLE_PARENT_PADDING_DETAIL" (onChange)="switchParentPaddingButtonChange($event)"></p-inputSwitch>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="!botonSelectedList.VISIBLE_PARENT_PADDING_DETAIL">
+                  <div class="grid">
+                    <div class="col-12">
+                      <p-inputNumber (onInput)="onButtonParentPaddingInput($event)" [(ngModel)]="botonSelectedList.PARENT_PADDING" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" inputId="vertical"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999" >
+                      </p-inputNumber>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" *ngIf="botonSelectedList.VISIBLE_PARENT_PADDING_DETAIL">
+                  <div class="grid">
+                    <div class="col-6 details">
+                      <span>Arriba</span>
+                      <div>
+                        <p-inputNumber (onInput)="onButtonParentPaddingTopInput($event)" [(ngModel)]="botonSelectedList.PARENT_PADDING_TOP" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                        decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                        </p-inputNumber>
+                      </div>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Derecha</span>
+                      <p-inputNumber (onInput)="onButtonParentPaddingRightInput($event)" [(ngModel)]="botonSelectedList.PARENT_PADDING_RIGHT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Izquierda</span>
+                      <p-inputNumber (onInput)="onButtonParentPaddingLeftInput($event)" [(ngModel)]="botonSelectedList.PARENT_PADDING_LEFT" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber>
+                    </div>
+                    <div class="col-6 details">
+                      <span>Abajo</span>
+                      <p-inputNumber (onInput)="onButtonParentPaddingBottomInput($event)" [(ngModel)]="botonSelectedList.PARENT_PADDING_BOTTOM" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [maxlength]="3" [min]="0" [max]="999">
+                      </p-inputNumber> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<img src="" alt="" style="display: none;">
+<a class="enlacev"style="display: none;"></a>
+<div class="botonv" style="display: none;"></div>
+<div class="textov" style="display: none;"></div>
+

@@ -1,0 +1,252 @@
+.icon-green-success>:before {
+    background-color: #689F38 !important;
+}
+
+.file-percent:before {
+    fill: currentColor;
+    background-color: #333;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(file-percent-outline.svg) no-repeat 50% 50%;
+    mask: url(file-percent-outline.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.phone-log:before {
+    fill: currentColor;
+    background-color: #333;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask: url(phone-log.svg) no-repeat 50% 50%;
+    mask: url(phone-log.svg) no-repeat 50% 50%;
+}
+
+.card-account-details:before {
+    fill: currentColor;
+    background-color: #333;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask: url(card-account-details.svg) no-repeat 50% 50%;
+    mask: url(card-account-details.svg) no-repeat 50% 50%;
+}
+
+.phone:before {
+    fill: currentColor;
+    background-color: #333;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask: url(phone.svg) no-repeat 50% 50%;
+    mask: url(phone.svg) no-repeat 50% 50%;
+}
+
+.file-pdf-box:before {
+    fill: currentColor;
+    background-color: #333;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask: url(file-pdf-box.svg) no-repeat 50% 50%;
+    mask: url(file-pdf-box.svg) no-repeat 50% 50%;
+}
+
+.clipboard-check:before {
+    fill: currentColor;
+    background-color: #333;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask: url(clipboard-check.svg) no-repeat 50% 50%;
+    mask: url(clipboard-check.svg) no-repeat 50% 50%;
+}
+
+.check-circle:before {
+    fill: currentColor;
+    background-color: green;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask: url(check-circle.svg) no-repeat 50% 50%;
+    mask: url(check-circle.svg) no-repeat 50% 50%;
+}
+
+.close-circle:before {
+    fill: currentColor;
+    background-color: #333;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask: url(close-circle.svg) no-repeat 50% 50%;
+    mask: url(close-circle.svg) no-repeat 50% 50%;
+}
+
+.information:before {
+    fill: currentColor;
+    background-color: #333;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask: url(information.svg) no-repeat 50% 50%;
+    mask: url(information.svg) no-repeat 50% 50%;
+}
+
+.progress-upload:before {
+    fill: currentColor;
+    background-color: #fff;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(progress-upload.svg) no-repeat 50% 50%;
+    mask: url(progress-upload.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.clock-edit-outline:before {
+    fill: currentColor;
+    background-color: #fff;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(clock-edit-outline.svg) no-repeat 50% 50%;
+    mask: url(clock-edit-outline.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.clock-plus-outline:before {
+    fill: currentColor;
+    background-color: #fff;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(clock-plus-outline.svg) no-repeat 50% 50%;
+    mask: url(clock-plus-outline.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.eye:before {
+    fill: currentColor;
+    background-color: #fff;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(eye.svg) no-repeat 50% 50%;
+    mask: url(eye.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.link:before {
+    fill: currentColor;
+    background-color: rgb(88, 88, 88);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(link-plus.svg) no-repeat 50% 50%;
+    mask: url(link-plus.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.button:before {
+    fill: currentColor;
+    background-color: rgb(88, 88, 88);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(button.svg) no-repeat 50% 50%;
+    mask: url(button.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+.image:before {
+    fill: currentColor;
+    background-color: rgb(88, 88, 88);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(image.svg) no-repeat 50% 50%;
+    mask: url(image.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+.text:before {
+    fill: currentColor;
+    background-color: rgb(88, 88, 88);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(text.svg) no-repeat 50% 50%;
+    mask: url(text.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+.select-marker:before {
+    fill: currentColor;
+    background-color: #fff;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(select-marker.svg) no-repeat 50% 50%;
+    mask: url(select-marker.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}

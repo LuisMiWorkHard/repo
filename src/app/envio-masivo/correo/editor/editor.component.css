@@ -1,0 +1,137 @@
+.contenedor-column{
+    /* overflow: auto; */
+    /* height: calc(100vh - 100px); */
+}
+.contenedor-html{
+    background-color: rgba(233, 233, 233, 0.5);
+    /* min-height: calc(100vh - 125px); */
+    padding-top: 30px;
+    padding-bottom: 30px;
+    /* min-width: calc(720px + 60px); */
+    overflow: auto;
+}
+.paleta-html{
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 5px 2px rgb(163, 163, 163);
+    -moz-box-shadow: 0 0 5px 2px rgb(163, 163, 163);
+    box-shadow: 0 0 5px 2px rgb(163, 163, 163);
+    max-height: calc(100vh - 171px);
+    width: calc(720px);
+    margin: 0 auto;
+}
+.wrapper{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* min-height: 100vh; */
+}
+.wrapper .main {
+    -moz-transition: margin-right 0.3s;
+    -o-transition: margin-right 0.3s;
+    -webkit-transition: margin-right 0.3s;
+    transition: margin-right 0.3s;
+    margin-right: 0px;
+    /* padding: 10px 0.7rem 1.5rem 0.7rem; */
+    flex: 1 1 0;
+    /* height: 100%; */
+    /* overflow: auto; */
+    /* margin-top: 50px; */
+}
+.wrapper .sidebar {
+    position: fixed;
+    width: 350px;
+    margin-right: -350px;
+    height: 100%;
+    overflow: scroll;
+    right: 0;
+    margin-top: -10px;
+    -moz-transition: margin-right 0.3s;
+    -o-transition: margin-right 0.3s;
+    -webkit-transition: margin-right 0.3s;
+    transition: margin-right 0.3s;
+    background: #ffffff;
+}
+
+.title-sidebar{
+    color : #2196F3;
+}
+
+.wrapper.sidebar-inactive-l .sidebar {
+    margin-right: 0px;
+}
+
+.wrapper.sidebar-inactive-l .main {
+    margin-right: 325px;
+}
+#contenido, .sidebar{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.card-title{
+    text-align: center;
+    margin-top: 5px;
+}
+.prueba{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-decoration: underline;
+}
+
+.d-grid{
+    display: grid;
+}
+
+.btn-delete{
+    display: block;
+    background-color: rgb(182, 52, 52);
+    color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 4px;
+}
+
+.btn-delete:hover{
+    background-color: rgb(194, 73, 73);
+}
+
+
+/*ESTILO DISEÑO A EXPORTAR*/
+table{
+    position: relative;
+}
+
+td{
+    border: 1px dashed black;
+    position: relative;
+    vertical-align: top;
+}
+
+p{
+    margin: 0 !important;
+}
+
+#header-table {
+    /* background-image: url(CABECERA.svg); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(228, 224, 224);
+}
+#body-table {
+    /* background-image: url(CUERPO.svg); */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#footer-table {
+    /* background-image: url(PIE.svg); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(228, 224, 224);
+}
+
+

@@ -1,0 +1,43 @@
+<div class="center-content">
+    <div class="col-12 md:col-4"></div>
+    <div class="col-12 md:col-4">
+        <p-card>
+            <div style="padding-left: 20px;padding-right: 20px;padding-bottom: 20px;">
+                <div align="center">
+                    <img src="assets/img/logo.png" />
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size: 25px;" class="primary-color-text">{{title}}</label>
+                </div>
+                <div class="grid">
+                    <div class="col-12 field">
+                        <span class="p-float-label">
+                            <input type="text" [(ngModel)]="usuario.USERNAME" pInputText maxlength="20"
+                                (keyup)="validar_dni()" class="w-full" style="text-transform: uppercase;">
+                            <label>Usuario</label>
+                        </span>
+                        <small *ngIf="loginValid.USERNAME_REQUIRED" class="p-invalid">Este campo es
+                            requerido</small>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 field">
+                        <span class="p-float-label">
+                            <p-password [feedback]="false" [toggleMask]="true" [(ngModel)]="usuario.PASSWORD"
+                                (keyup)="validar_password()" (keyup.enter)="acceder()" inputStyleClass="w-full" styleClass="w-full"></p-password>
+                            <label>Contraseña</label>
+                        </span>
+                        <small *ngIf="loginValid.PASSWORD_REQUIRED" class="p-invalid">Este campo es
+                            requerido</small>
+                    </div>
+                </div>
+                <div>
+                    <button pButton class="w-full" type="button" (click)="acceder()" label="Ingresar"></button>
+                </div>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-4"></div>
+</div>
+<app-blockui [blocked]="blocked"></app-blockui>
+<p-toast></p-toast>

@@ -1,0 +1,207 @@
+<div class="container container-identificar">
+
+    <div style="display: flex;align-items: center;margin-bottom: 15px;">
+        <i class="pi pi-user primary-color-text" style="font-size: 1.5rem;"></i>
+        <div class="header primary-color-text" style="margin-left: 5px;font-size: 18px;">Buscar docente</div>
+    </div>
+
+    <div class="grid">
+        <div class="field col-6 lg:col-1 flex align-items-center">
+            <p-radioButton name="filtro" value="1" [(ngModel)]="selectedRadioFiltro" (click)="limpiar_filtro()"></p-radioButton>
+            <p for="filtro1" class="ml-2">DNI</p>
+        </div>
+        <div class="field col-6 lg:col-3 flex align-items-center">
+            <p-radioButton name="filtro" value="2" [(ngModel)]="selectedRadioFiltro" (click)="limpiar_filtro()"></p-radioButton>
+            <p for="filtro2" class="ml-2">APELLIDOS Y NOMBRES</p>
+        </div>
+        <div class="field col-12 lg:col-3 flex align-items-center">
+            <span class="block" *ngIf="selectedRadioFiltro==='1'" class="w-full">
+                <input type="text" maxlength="8" (keypress)="keypress_dni($event)" pInputText placeholder="Ingrese Dni" [(ngModel)]="dni" (keyup.enter)="fn_buscar()"/>
+            </span>
+            <span *ngIf="selectedRadioFiltro==='2'" class="w-full">
+                <input type="text" pInputText placeholder="Ingrese Apellidos y Nombres" [(ngModel)]="apenom" class="w-full" (keyup.enter)="fn_buscar()"/>
+            </span>
+        </div>
+        <div class="field col-12 lg:col-5 flex align-items-center">
+            <button pButton pRipple label="Buscar" (click)="fn_buscar()" icon="pi pi-search" class="p-button-info" style="margin-right: 5px; height: 38px;"></button>
+        </div>
+    </div>
+    <p-table [value]="docentes" [paginator]="true" [rows]="LIMIT" [lazy]="true" [lazyLoadOnInit]="false" (onLazyLoad)="loadLazy($event)" [totalRecords]="totalRecords" dataKey="ASODNI"  responsiveLayout="scroll" scrollDirection="both" [(first)]="reiniciar_page">
+        <ng-template pTemplate="caption">
+            <div class="text-teal-600">Lista de docentes {{totalRecords | number}}</div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>DNI</th>
+                <th>Apellidos y nombres</th>
+                <th>Tipo Docente</th>
+                <th>Ver</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-detalle>
+            <tr>
+                <td>{{detalle.ASODNI}}</td>
+                <td>{{detalle.ASOAPENOMDNI}}</td>
+                <td>{{detalle.TIPO_ASOCIADO}}</td>
+                <td><button pButton pRipple type="button" icon="pi pi-eye" class="p-button-rounded p-button-info" pTooltip="Ver Docente" (click)="fn_ver_docente(detalle.ASODNI)"></button></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<p-dialog [(visible)]="display_datos" [style]="{width: '85vw'}" styleClass="dialog-height" [draggable]="false" [resizable]="false" [modal]="true" [maximizable]="false">
+    <div class="grid">
+        <div class="col-12 lg:col-3">
+            <div class="grid">
+                <div class="col-12 flex justify-content-center">
+                    <img *ngIf="foto == ''" src="../../../assets/img/foto.svg" style="width: 250px; height: 296px">
+                    <img *ngIf="foto != ''" src="{{foto}}" style="width: 250px; height: 296px">
+                </div>
+                <div class="col-12 flex justify-content-center">
+                    <span><b>DNI:</b> {{docente.ASODNI}}</span>
+                </div>
+                <div class="col-12">
+                    <img *ngIf="firma == ''" src="../../../assets/img/firma.svg" style="width: 100%">
+                    <img *ngIf="firma != ''" src="{{firma}}" style="width: 100%">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-9">
+            <div class="grid">
+                <div class="col-12">
+                    <div class="grid">
+                        <div class="col-6">
+                            <h3 class="m-0">DATOS PERSONALES</h3>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="m-0">CONTACTABILIDAD</h3>
+                        </div>
+                        <div class="col-12">
+                            <p-card>
+                                <div class="grid">
+                                    <div class="col-6">
+                                        <div class="grid">
+                                            <div class="col-12 lg:col-4">
+                                                <b>APELLIDOS Y NOMBRES</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                {{docente.ASOAPENOMDNI}}
+                                            </div>
+                                            <div class="col-12 lg:col-4">
+                                                <b>ESTADO CIVIL</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                <span *ngIf="docente.ASOSEXO == 'M'">{{docente.ESTCIVDES}}</span>
+                                                <span *ngIf="docente.ASOSEXO != 'M'">{{docente.ESTCIVDESFEM}}</span>
+                                            </div>
+                                            <div class="col-12 lg:col-4">
+                                                <b>NACIMIENTO</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                {{docente.ASOFECNAC}}
+                                            </div>
+                                            <div class="col-12 lg:col-4">
+                                                <b>TIPO DE DOCENTE</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                {{docente.TIPO_ASOCIADO}}
+                                            </div>
+                                            <div class="col-12 lg:col-4">
+                                                <b>AFILIADO</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                {{docente.AFILIADO}}
+                                            </div>
+                                            <div class="col-12 lg:col-4">
+                                                <b>FECHA NOMBRAMIENTO</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                {{docente.ASOFRESNOM}}
+                                            </div>
+                                            <div class="col-12 lg:col-4">
+                                                <b>RÉGIMEN PENSIÓN</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                {{docente.REGPENDES}}
+                                            </div>
+                                            <div class="col-12 lg:col-4">
+                                                <b>TRABAJA EN</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                {{docente.NOMCENEDU}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="grid">
+                                            <div class="col-12 lg:col-4">
+                                                <b>CELULAR</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                <div class="flex flex-wrap">
+                                                    <span *ngFor="let celular of celulares" class="flex align-items-end mr-2 mb-2">
+                                                        <i *ngIf="celular.ESTADO =='VERIFICADO'" class="check-circle"></i>
+                                                        <i *ngIf="celular.ESTADO =='NO VERIFICADO'" class="alert"></i>
+                                                        &nbsp;{{celular.CELULAR}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 lg:col-4">
+                                                <b>CORREO</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                <div class="grid">
+                                                    <div *ngFor="let correo of correos" class="col-12">
+                                                        <div class="flex align-items-start">
+                                                            <i *ngIf="correo.ESTADO =='VERIFICADO'" class="check-circle"></i>
+                                                            <i *ngIf="correo.ESTADO =='NO VERIFICADO'" class="alert"></i>
+                                                            <span style="word-wrap: break-word; width: 100%; padding-right: 20px;">
+                                                                &nbsp;{{correo.CORREO}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 lg:col-4">
+                                                <b>TELEFONO</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8 flex">
+                                                <span *ngFor="let fijo of fijos; let i = index;" class="flex align-items-end" [ngClass]="{ 'ml-3' : i > 0}">
+                                                    <i *ngIf="fijo.ESTADO =='VERIFICADO'" class="check-circle"></i>
+                                                    <i *ngIf="fijo.ESTADO =='NO VERIFICADO'" class="alert"></i>
+                                                    &nbsp;{{fijo.TELEFONO}}
+                                                </span>
+                                            </div>
+                                            <div class="col-12 lg:col-4">
+                                                <b>VIVE EN</b>
+                                            </div>
+                                            <div class="col-12 lg:col-8">
+                                                <span *ngIf="docente.ASODIR != null">{{docente.ASODIR}} , {{docente.DEPARTAMENTO}} / {{docente.PROVINCIA}} / {{docente.DISTRITO}}</span> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </p-card>
+                        </div>
+                        <div class="col-12 flex justify-content-between">
+                            <div class="flex">
+                                <span class="flex align-items-end"><i class="check-circle mr-1"></i>VERIFICADO</span>
+                                <span class="flex align-items-end ml-2"><i class="alert mr-1"></i>NO VERIFICADO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="grid">
+            <div class="col-10"></div>
+            <div class="col-2">
+                <button pButton pRipple icon="pi pi-times" (click)="display_datos=false" label="CERRAR" class="p-button-text"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<app-blockui [blocked]="blocked"></app-blockui>
+<p-toast></p-toast>

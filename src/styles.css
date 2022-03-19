@@ -1,0 +1,233 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'assets/icons/icons.css';
+@import 'assets/mdc-light-indigo/theme.css';
+:root {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+}
+
+html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #E4E5E6;
+    font-weight: 500;
+    text-align: left;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-repeat: no-repeat;
+}
+
+.hover:hover {
+    cursor: pointer;
+}
+
+.p-invalid {
+    color: #B00020;
+}
+
+.primary-color-text {
+    color: #2196F3;
+}
+
+.primary-background-text {
+    background-color: #2196F3;
+}
+
+.danger-color-text {
+    color: #D32F2F;
+}
+
+.danger-background-text {
+    background-color: #D32F2F;
+}
+
+.container {
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    background-color: #fff;
+}
+
+.dialog-height.p-dialog {
+    max-height: 98%;
+}
+
+.p-datatable-scrollable>.p-datatable-wrapper>.p-datatable-table>.p-datatable-thead {
+    z-index: 0 !important;
+}
+
+.chipcustom {
+    border-radius: 2rem;
+    background-color: transparent;
+    color: #fff;
+    border: 0 none;
+    margin: 0;
+    display: inline-flex;
+    -webkit-user-select: none;
+    user-select: none;
+    align-items: center;
+    vertical-align: bottom;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    padding: 5px;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.readonly {
+    opacity: 0.7;
+}
+
+
+/*************************/
+.sidebar .p-card{
+    -webkit-box-shadow: 0 0 5px 2px rgb(163, 163, 163);
+    -moz-box-shadow: 0 0 5px 2px rgb(163, 163, 163);
+    box-shadow: 0 0 5px 2px rgb(163, 163, 163);
+}
+
+.sidebar .p-card:hover{
+    background-color: rgb(187, 187, 187);
+}
+.sidebar .p-panel-content{
+    margin-top: 10px;
+}
+.sidebar .grid{
+    margin: 0 !important;
+}
+
+.sidebar .p-panel{
+    margin-top: 5px;
+}
+
+.sidebar .details input{
+    width: 45px !important;
+}
+
+/*----- HTML GENERATOR -----*/
+/* #contenido img{
+    margin: 0; 
+    border: 0;
+    padding: 0;
+    display: block;
+    max-width: 100%;
+    height: auto;
+} */
+
+#td-contenido td:hover, .border-selected{
+    border: 2px dotted rgb(54, 101, 231) !important; 
+}
+
+.border-unselected{
+    border: 1px dashed black !important;
+}
+
+.hover-td{
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top:0;
+    /* display: block; */
+    width: 70px;
+    height: 30px;
+    background-color: #2196F3;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    text-align: center;
+    text-align: -webkit-center;
+}
+
+.hide{
+    display:none;
+}
+.hide-animation{
+    display: none;
+    opacity: 0;
+    /* transition: visibility 3s, opacity 5s linear; */
+}
+.show-animation{
+    visibility: visible;
+    opacity: 1;
+}
+
+td:hover > .hide{
+    display: block;
+}
+
+.hover-td span{
+    line-height: 30px;
+    color: #fff;
+}
+
+.auxiliar{
+    height: 100px;
+}
+
+.btn-variable{
+    height: 40px !important;
+    width: 40px !important;
+    background: rgba(33, 150, 243, 0.92) !important;
+    border-radius: 4px !important;
+    margin-left: -7px !important;
+    color: #fff !important;
+}
+
+.min-w-1 button{
+    min-width: 1rem !important;
+    margin-left: 2px;
+}
+
+#p-imagen-target .p-component{
+    width: 100% !important;
+    border-bottom-right-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+
+#td-contenido p{
+    margin: 0 !important;
+}
+
+
+
+.ql-snow .ql-tooltip a.ql-action::after{
+    border-right: 1px solid #ccc;
+    content: 'Modificar' !important;
+    padding-right: 8px;
+}
+.ql-snow .ql-tooltip.ql-editing a.ql-action::after{
+    border-right: 0px;
+    content: 'Confirmar' !important;
+    padding-right: 0px;
+}
+.ql-snow .ql-tooltip a.ql-remove::before{
+    content: 'Eliminar' !important;
+    margin-left: 0 !important;
+}
+.ql-snow .ql-tooltip a.ql-action::after{
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+.ql-tooltip{
+    left: 0 !important;
+    display: grid;
+}
+.ql-tooltip input{
+    width: 100%;
+}
+
