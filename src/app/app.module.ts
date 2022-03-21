@@ -50,6 +50,7 @@ import localeesUs from '@angular/common/locales/es-US';
 import { registerLocaleData } from '@angular/common';
 import { IdentificarComponent } from './docente/identificar/identificar.component';
 import { EditorComponent } from './envio-masivo/correo/editor/editor.component';
+import { PlantillaComponent } from './envio-masivo/correo/plantilla/plantilla.component';
 registerLocaleData(localeesUs, 'es-US');
 
 @NgModule({
@@ -60,7 +61,8 @@ registerLocaleData(localeesUs, 'es-US');
     LoginComponent,
     NotfoundComponent,
     IdentificarComponent,
-    EditorComponent
+    EditorComponent,
+    PlantillaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,107 @@
+<div class="container p-5">
+    <div class="grid">
+        <div class="col-12">
+            <p style="text-align: center; font-weight: bold; font-size: 18px;">Seleccione una plantilla disponible</p>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-6 sm:col-2">
+            <div class="opcion-plantilla" (click)="display_nueva_plantilla = true;">
+                <div class="opcion-content flex justify-content-center pt-3">
+                    <p class="icon-content flex justify-content-center align-items-center">
+                        <span class="pi pi-plus icon"></span>
+                    </p>
+                </div>
+                <p class="opcion-title">Nueva plantilla</p>
+            </div>
+        </div>
+        <div class="col-6 sm:col-2" *ngFor="let plantilla of plantillas">
+            <div class="opcion-plantilla" (click)="seleccionPlantilla(plantilla.ID)">
+                <div class="opcion-content" [innerHtml] = "plantilla.PLANTILLA_HTML_EDIT"></div>
+                <p class="opcion-title">Plantilla N° {{plantilla.ID}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<p-dialog header="Nueva Plantilla" [(visible)]="display_nueva_plantilla" [modal]="true" [style]="{height: '75vh'}" [maximizable]="true"
+    [draggable]="false" [resizable]="false" id="dialog-plantilla" (onShow)="onShowPlantilla()">
+    <div class="grid">
+        <div class="col-9">
+            <div class="contenedor-html-plantilla">
+                <div class="paleta-html">
+                    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%" id="paleta">
+                        <tr>
+                            <td align="center" valign="center">
+                                <table border="0" cellpadding="0" cellspacing="0" width="80%" id="contenido">
+                                    <tr>
+                                        <td align="center" valign="center" width="100%" id="td-contenido">
+                                            <div class="auxiliar-plantilla">
+        
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="contenedor-estructura-plantilla">
+                <p-panel header="Estructuras">
+                    <div class="grid" id="estructuras">
+                      <div class="col-12 p-1">
+                        <p-card (click)="addTable(1)">
+                          <div class="grid m-0">
+                            <div class="col-12 border-solid border-600 surface-400 p-3"></div>
+                          </div>
+                        </p-card>
+                      </div>
+                      <div class="col-12 p-1">
+                        <p-card (click)="addTable(2)">
+                          <div class="grid m-0">
+                            <div class="col-6 border-solid border-600 surface-400 p-3"></div>
+                            <div class="col-6 border-solid border-600 surface-400 p-3"></div>
+                          </div>
+                        </p-card>
+                      </div>
+                      <div class="col-12 p-1">
+                        <p-card (click)="addTable(3)">
+                          <div class="grid m-0">
+                            <div class="col-4 border-solid border-600 surface-400 p-3"></div>
+                            <div class="col-4 border-solid border-600 surface-400 p-3"></div>
+                            <div class="col-4 border-solid border-600 surface-400 p-3"></div>
+                          </div>
+                        </p-card>
+                      </div>
+                      <div class="col-12 p-1">
+                        <p-card (click)="addTable(4)">
+                          <div class="grid m-0">
+                            <div class="col-4 border-solid border-600 surface-400 p-3"></div>
+                            <div class="col-8 border-solid border-600 surface-400 p-3"></div>
+                          </div>
+                        </p-card>
+                      </div>
+                      <div class="col-12 p-1">
+                        <p-card (click)="addTable(5)">
+                          <div class="grid m-0">
+                            <div class="col-8 border-solid border-600 surface-400 p-3"></div>
+                            <div class="col-4 border-solid border-600 surface-400 p-3"></div>
+                          </div>
+                        </p-card>
+                      </div>
+                    </div>
+                </p-panel>
+            </div>
+        </div>
+    </div>
+    
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-save" (click)="grabarPlantilla()" label="Grabar" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-times" (click)="display_nueva_plantilla=false" label="Cancelar" styleClass="p-button-text"></p-button>
+    </ng-template>
+
+    <div id="content_html_load" style="display: none;"></div>
+</p-dialog>
+<p-toast></p-toast>

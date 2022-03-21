@@ -2,6 +2,9 @@
   <div class="container main">
       <div class="p-0">
         <div class="contenedor-column">
+          <div class="pb-2 pl-2">
+            <p class="pi pi-save m-0 inline-block px-4 py-2 btn-guardar-formato"><span class="pl-2">Guardar Formato</span></p>
+          </div>
           <div class="contenedor-html">
             <div class="paleta-html">
               <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%" id="paleta">
@@ -12,7 +15,7 @@
                             <tr>
                                 <td align="center" valign="center" width="100%" id="td-contenido">
                                     <!--EDITABLE-->
-                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="header-table">
+                                    <!-- <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                         <tr>
                                             <td align="center" valign="center" width="50%" id="td-1">
                                             </td>
@@ -20,34 +23,32 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <div id="body-table" style="width: 100%;">
-                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                            <tr>
-                                                <td align="center" valign="center" width="100%" id="td-3">
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                            <tr>
-                                                <td align="center" valign="center" width="50%" id="td-4">
-                                                </td>
-                                                <td align="center" valign="center" width="50%" id="td-5">
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                            <tr>
-                                                <td align="center" valign="center" width="100%" id="td-6">
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="footer-table">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td align="center" valign="center" width="100%" id="td-3">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td align="center" valign="center" width="50%" id="td-4">
+                                            </td>
+                                            <td align="center" valign="center" width="50%" id="td-5">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td align="center" valign="center" width="100%" id="td-6">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                         <tr>
                                             <td align="center" valign="center" width="100%" id="td-7">
                                             </td>
                                         </tr>
-                                    </table>
+                                    </table> -->
                                 </td>
                             </tr>
                         </table>
@@ -174,11 +175,49 @@
             </p-panel>
           </p-tabPanel>
           <p-tabPanel header="Contenido" [selected]="true">
-            <p-panel header="Estructuras" [toggleable]="true" [collapsed]="true">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p-panel *ngIf="display_estructuras" header="Estructuras" [toggleable]="true" [collapsed]="true">
+              <div class="grid" id="estructuras">
+                <div class="col-12">
+                  <p-card (click)="addTable(1)">
+                    <div class="grid">
+                      <div class="col-12 border-solid border-600 surface-400 p-3"></div>
+                    </div>
+                  </p-card>
+                </div>
+                <div class="col-12">
+                  <p-card (click)="addTable(2)">
+                    <div class="grid">
+                      <div class="col-6 border-solid border-600 surface-400 p-3"></div>
+                      <div class="col-6 border-solid border-600 surface-400 p-3"></div>
+                    </div>
+                  </p-card>
+                </div>
+                <div class="col-12">
+                  <p-card (click)="addTable(3)">
+                    <div class="grid">
+                      <div class="col-4 border-solid border-600 surface-400 p-3"></div>
+                      <div class="col-4 border-solid border-600 surface-400 p-3"></div>
+                      <div class="col-4 border-solid border-600 surface-400 p-3"></div>
+                    </div>
+                  </p-card>
+                </div>
+                <div class="col-12">
+                  <p-card (click)="addTable(4)">
+                    <div class="grid">
+                      <div class="col-4 border-solid border-600 surface-400 p-3"></div>
+                      <div class="col-8 border-solid border-600 surface-400 p-3"></div>
+                    </div>
+                  </p-card>
+                </div>
+                <div class="col-12">
+                  <p-card (click)="addTable(5)">
+                    <div class="grid">
+                      <div class="col-8 border-solid border-600 surface-400 p-3"></div>
+                      <div class="col-4 border-solid border-600 surface-400 p-3"></div>
+                    </div>
+                  </p-card>
+                </div>
+              </div>
             </p-panel>
             <p-panel header="Elementos" [toggleable]="true" [collapsed]="false">
               <div class="grid">

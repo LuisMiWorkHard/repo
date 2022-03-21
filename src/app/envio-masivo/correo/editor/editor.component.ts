@@ -8,6 +8,8 @@ import { ModelImgEdit } from 'src/app/models/model-img-edit';
 import { ModelTarget } from 'src/app/models/model-target';
 import { ModelTextoEdit } from 'src/app/models/model-texto-edit';
 import { ModelVariable } from 'src/app/models/model-variable';
+import { ConditionalExpr } from '@angular/compiler';
+import { ActivatedRoute, Params } from '@angular/router';
 
 declare let unlayer: any;
 
@@ -21,13 +23,16 @@ export class EditorComponent implements OnInit {
   @ViewChild('wrapper', { static: true }) wrapper?: ElementRef;
   display_menu: boolean = false;
   display_delete: boolean = false;
+  display_estructuras: boolean = false;
   id_element_selected: string = "";
   MAX_LENGHT_2 = 2;
   MAX_LENGHT_3 = 3;
   MIN_VALUE_8 = 8;
   MAX_VALUE_99 = 99;
   index: number = 0;
-  
+  id_plantilla: number = 0;
+  actual_plantilla: any;
+
   /*IMAGEN PROPIEDADES*/
   imgList: ModelImgEdit[] = [];
   imgSelectedList: ModelImgEdit = new ModelImgEdit();
@@ -56,7 +61,8 @@ export class EditorComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) document: Document,
-    private elementRef:ElementRef) 
+    private elementRef:ElementRef,
+    private route: ActivatedRoute) 
   { 
     this.targets = [
       { TEXTO: 'Ninguno', CODIGO: 0, VALOR: '' },
@@ -88,6 +94,30 @@ export class EditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //inicio
+    this.route.params.subscribe((params: Params) => this.id_plantilla = params['id']);
+    console.log(this.id_plantilla);
+
+    let plantillas = [{
+      ID: 1,
+      NOMBRE: 'PLANTILLA 1',
+      PLANTILLA_HTML_EDIT: '<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="50%" id="td-1"></td><td align="center" valign="top" width="50%" id="td-2"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-3"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="50%" id="td-4"></td><td align="center" valign="top" width="50%" id="td-5"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-6"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-7"></td></tr></table>',
+      PLANTILLA_HTML_LOAD: '<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="50%" id="td-1"></td><td align="center" valign="top" width="50%" id="td-2"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-3"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="50%" id="td-4"></td><td align="center" valign="top" width="50%" id="td-5"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-6"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-7"></td></tr></table>'
+    },
+    {
+      ID: 2,
+      NOMBRE: 'PLANTILLA 2',
+      PLANTILLA_HTML_EDIT: '<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="50%" id="td-1"></td><td align="center" valign="top" width="50%" id="td-2"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-3"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-4"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-5"></td></tr></table>',
+      PLANTILLA_HTML_LOAD: '<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="50%" id="td-1"></td><td align="center" valign="top" width="50%" id="td-2"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-3"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-4"></td></tr></table><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="center" valign="top" width="100%" id="td-5"></td></tr></table>'
+    }];
+
+    this.actual_plantilla = plantillas.find(x => x.ID == this.id_plantilla);
+    let beforeContentAddGrids = document.getElementById("td-contenido");
+    if(beforeContentAddGrids){
+      beforeContentAddGrids.innerHTML = this.actual_plantilla.PLANTILLA_HTML_LOAD;
+    }
+    //fin
+
     this.gridList = [];
     let contentGrids = document.getElementById("td-contenido");
     if(contentGrids){
@@ -112,10 +142,11 @@ export class EditorComponent implements OnInit {
 
   loadHTMLVisor(){
     let visor =  document.getElementById("td-contenido");
-    let actualTD: any = "";
+    console.log(visor);
+    /* let actualTD: any = ""; */
     visor?.querySelectorAll("td").forEach( x => { 
       x.innerHTML = "<div class='hover-td hide' (click)=\"clickOpenToggle('" +x.getAttribute("id")+ "')\"><span class='select-marker'></span></div><div class='auxiliar'></div>"; 
-      actualTD = x.getAttribute("id");
+      /* actualTD = x.getAttribute("id"); */
       x.querySelector(".hover-td")?.addEventListener("click", this.clickOpenToggle.bind(this, x.getAttribute("id") || "", false));
     });
   }
@@ -127,22 +158,34 @@ export class EditorComponent implements OnInit {
       let nodeRoot = nodeParent.parentElement;
       if(element_selected != nodeParent){
         nodeParent.remove();
+      }else{
+        if(element_selected.tagName == "TD"){
+          let parent_tr = element_selected.parentElement;
+          if(parent_tr && parent_tr.tagName == "TR"){
+            if(parent_tr.childNodes.length == 1){
+              let parent_table = parent_tr.parentElement;
+              if(parent_table){
+                if(parent_table.tagName == "TABLE"){
+                  let parent_of_table = parent_table.parentElement;
+                  if(parent_of_table){
+                    nodeRoot = parent_of_table;
+                  }
+                }
+                parent_table.remove();
+              }
+            }
+            else{
+              element_selected.remove();
+            }
+          }
+        }
       }
-      console.log(nodeRoot);
-      console.log(nodeRoot?.tagName == "TD");
-      console.log(nodeRoot?.childNodes.length);
       if(nodeRoot && nodeRoot.tagName == "TD" && nodeRoot.childNodes.length == 1){
         let new_content_texto = document.createElement("div");
         new_content_texto.setAttribute("class","auxiliar");
         nodeRoot.append(new_content_texto);
       }
       element_selected.remove();
-      
-      /* let before_last_created = document.getElementById(this.before_last_created)
-      if(before_last_created){
-        before_last_created.classList.remove("before-last-created");
-      } */
-      /* this.replaceFlagNewLastCreated(); */
     }
     this.clickCloseToggle();
   }
@@ -151,9 +194,18 @@ export class EditorComponent implements OnInit {
     
     this.wrapper?.nativeElement.classList.add('sidebar-inactive-l');
     this.display_menu = false;
-    this.display_delete = false;
+    
+    if(id.length > 3 && id.substring(0,2)){
+      this.display_delete = false;
+      this.display_estructuras = true;
+    }
+    else{
+      this.display_delete = true;
+      this.display_estructuras = false;
+    }
     
     this.id_element_selected = id;
+
     console.log("id seleccionado: " + id);
     
     document.querySelectorAll(".border-selected").forEach(x=> {
@@ -219,20 +271,6 @@ export class EditorComponent implements OnInit {
       }
     }
     
-    /* document.querySelectorAll(".border-selected").forEach(x=> {
-      x.classList.add("border-unselected");
-      x.classList.remove("border-selected");
-    });
-
-    this.id_element_selected = id;
-
-    let element_selected = document.getElementById(id);
-    
-    if(element_selected){
-        element_selected.classList.remove("border-unselected");
-        element_selected.classList.add("border-selected");
-    } */
-    
     document.querySelectorAll(".panel-diseno").forEach(x => {
       x.classList.remove("show-animation");
       x.classList.add("hide-animation");
@@ -276,12 +314,166 @@ export class EditorComponent implements OnInit {
   getSelectedAndRemoveDiv(): any{
       let element_selected = document.getElementById(this.id_element_selected);
       console.log("getSelectedAndRemoveDiv: ", element_selected);
-      let div_inner_selected = element_selected?.querySelector(".auxiliar");
-      if (div_inner_selected){
-        div_inner_selected.remove();
+      if(element_selected){
+        let div_inner_selected = element_selected.querySelector(":scope > .auxiliar");
+        if (div_inner_selected){
+          div_inner_selected.remove();
+        }
       }
 
       return element_selected;
+  }
+
+  addTable(option:number){
+    let element_selected = this.getSelectedAndRemoveDiv();
+    console.log(element_selected);
+    if(element_selected){
+      let new_table =  document.createElement("table");
+      let new_id_table = this.getNewIdForElement();
+      new_table.setAttribute("id",new_id_table);
+      new_table.setAttribute("border","0");
+      new_table.setAttribute("cellpadding","0");
+      new_table.setAttribute("cellspacing","0");
+      new_table.setAttribute("width","100%");
+      element_selected.appendChild(new_table);
+      let actual_table = document.getElementById(new_id_table);
+      if(actual_table){
+        let new_tr = document.createElement("tr");
+        let new_id_tr = this.getNewIdForElement();
+        new_tr.setAttribute("id",new_id_tr);
+        actual_table.appendChild(new_tr);
+        let actual_tr = document.getElementById(new_id_tr);
+        if(actual_tr){
+          switch (option) {
+            case 1:
+              let new_td_1_1 = document.createElement("td");
+              let new_id_td_1_1 = this.getNewIdForElement();
+              new_td_1_1.setAttribute("id",new_id_td_1_1);
+              new_td_1_1.setAttribute("align","center");
+              new_td_1_1.setAttribute("valign","center");
+              new_td_1_1.setAttribute("width","100%");
+              new_td_1_1.setAttribute("style","position:relative; background-color:#FFFFFF;");
+              new_td_1_1.classList.add("td-child");
+              new_td_1_1.classList.add("border-unselected");
+              actual_tr.appendChild(new_td_1_1);
+              break;
+            case 2:
+              let new_td_2_1 = document.createElement("td");
+              let new_id_td_2_1 = this.getNewIdForElement();
+              new_td_2_1.setAttribute("id",new_id_td_2_1);
+              new_td_2_1.setAttribute("align","center");
+              new_td_2_1.setAttribute("valign","center");
+              new_td_2_1.setAttribute("width","50%");
+              new_td_2_1.setAttribute("style","position:relative; background-color:#FFFFFF;");
+              new_td_2_1.classList.add("td-child");
+              new_td_2_1.classList.add("border-unselected");
+              actual_tr.appendChild(new_td_2_1);
+
+              let new_td_2_2 = document.createElement("td");
+              let new_id_td_2_2 = this.getNewIdForElement();
+              new_td_2_2.setAttribute("id",new_id_td_2_2);
+              new_td_2_2.setAttribute("align","center");
+              new_td_2_2.setAttribute("valign","center");
+              new_td_2_2.setAttribute("width","50%");
+              new_td_2_2.setAttribute("style","position:relative; background-color:#FFFFFF;");
+              new_td_2_2.classList.add("td-child");
+              new_td_2_2.classList.add("border-unselected");
+              actual_tr.appendChild(new_td_2_2);
+              break;
+            case 3:
+              let new_td_3_1 = document.createElement("td");
+              let new_id_td_3_1 = this.getNewIdForElement();
+              new_td_3_1.setAttribute("id",new_id_td_3_1);
+              new_td_3_1.setAttribute("align","center");
+              new_td_3_1.setAttribute("valign","center");
+              new_td_3_1.setAttribute("width","33.33%");
+              new_td_3_1.setAttribute("style","position:relative; background-color:#FFFFFF;");
+              new_td_3_1.classList.add("td-child");
+              new_td_3_1.classList.add("border-unselected");
+              actual_tr.appendChild(new_td_3_1);
+
+              let new_td_3_2 = document.createElement("td");
+              let new_id_td_3_2 = this.getNewIdForElement();
+              new_td_3_2.setAttribute("id",new_id_td_3_2);
+              new_td_3_2.setAttribute("align","center");
+              new_td_3_2.setAttribute("valign","center");
+              new_td_3_2.setAttribute("width","33.33%");
+              new_td_3_2.setAttribute("style","position:relative; background-color:#FFFFFF;");
+              new_td_3_2.classList.add("td-child");
+              new_td_3_2.classList.add("border-unselected");
+              actual_tr.appendChild(new_td_3_2);
+
+              let new_td_3_3 = document.createElement("td");
+              let new_id_td_3_3 = this.getNewIdForElement();
+              new_td_3_3.setAttribute("id",new_id_td_3_3);
+              new_td_3_3.setAttribute("align","center");
+              new_td_3_3.setAttribute("valign","center");
+              new_td_3_3.setAttribute("width","33.33%");
+              new_td_3_3.setAttribute("style","position:relative; background-color:#FFFFFF;");
+              new_td_3_3.classList.add("td-child");
+              new_td_3_3.classList.add("border-unselected");
+              actual_tr.appendChild(new_td_3_3);
+              break;
+            case 4:
+              let new_td_4_1 = document.createElement("td");
+              let new_id_td_4_1 = this.getNewIdForElement();
+              new_td_4_1.setAttribute("id",new_id_td_4_1);
+              new_td_4_1.setAttribute("align","center");
+              new_td_4_1.setAttribute("valign","center");
+              new_td_4_1.setAttribute("width","33.33%");
+              new_td_4_1.setAttribute("style","position:relative; background-color:#FFFFFF;");
+              new_td_4_1.classList.add("td-child");
+              new_td_4_1.classList.add("border-unselected");
+              actual_tr.appendChild(new_td_4_1);
+
+              let new_td_4_2 = document.createElement("td");
+              let new_id_td_4_2 = this.getNewIdForElement();
+              new_td_4_2.setAttribute("id",new_id_td_4_2);
+              new_td_4_2.setAttribute("align","center");
+              new_td_4_2.setAttribute("valign","center");
+              new_td_4_2.setAttribute("width","66.66%");
+              new_td_4_2.setAttribute("style","position:relative; background-color:#FFFFFF;");
+              new_td_4_2.classList.add("td-child");
+              new_td_4_2.classList.add("border-unselected");
+              actual_tr.appendChild(new_td_4_2);
+              break;
+            case 5:
+              let new_td_5_1 = document.createElement("td");
+              let new_id_td_5_1 = this.getNewIdForElement();
+              new_td_5_1.setAttribute("id",new_id_td_5_1);
+              new_td_5_1.setAttribute("align","center");
+              new_td_5_1.setAttribute("valign","center");
+              new_td_5_1.setAttribute("width","66.66%");
+              new_td_5_1.setAttribute("style","position:relative; background-color:#FFFFFF;");
+              new_td_5_1.classList.add("td-child");
+              new_td_5_1.classList.add("border-unselected");
+              actual_tr.appendChild(new_td_5_1);
+
+              let new_td_5_2 = document.createElement("td");
+              let new_id_td_5_2 = this.getNewIdForElement();
+              new_td_5_2.setAttribute("id",new_id_td_5_2);
+              new_td_5_2.setAttribute("align","center");
+              new_td_5_2.setAttribute("valign","center");
+              new_td_5_2.setAttribute("width","33.33%");
+              new_td_5_2.setAttribute("style","position:relative; background-color:#FFFFFF;");
+              new_td_5_2.classList.add("td-child");
+              new_td_5_2.classList.add("border-unselected");
+              actual_tr.appendChild(new_td_5_2);
+              break;
+            default:
+              break;
+          }
+          let new_tds = actual_tr.querySelectorAll("td");
+          if(new_tds){
+            new_tds.forEach(x => {
+              x.innerHTML = "<div class='hover-td-bottom hide' (click)=\"clickOpenToggle('" +x.getAttribute("id")+ "')\"><span class='select-multiple-marker'></span></div><div class='auxiliar'></div>"; 
+              /* actualTD = x.getAttribute("id"); */
+              x.querySelector(".hover-td-bottom")?.addEventListener("click", this.clickOpenToggle.bind(this, x.getAttribute("id") || "", false));
+            });
+          }
+        }
+      }
+    }
   }
 
   addImagen(){

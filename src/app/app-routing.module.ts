@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IdentificarComponent } from './docente/identificar/identificar.component';
 import { EditorComponent } from './envio-masivo/correo/editor/editor.component';
+import { PlantillaComponent } from './envio-masivo/correo/plantilla/plantilla.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -11,13 +12,13 @@ import { AuthGuardService } from './services/auth-guard.service';
 const routes: Routes = [
   {
   path: 'login',
-  component: LoginComponent,
-  canActivate: [AuthGuardLoginService]
-  }, 
+  component: PlantillaComponent,
+  /* canActivate: [AuthGuardLoginService] */
+  },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuardService],
+    /* canActivate: [AuthGuardService], */
     children: [
       {
         path: 'identificar',
@@ -25,9 +26,14 @@ const routes: Routes = [
         canActivate: [AuthGuardService]
       },
       {
-        path: 'envio-masivo/correo/editor',
+        path: 'envio-masivo/correo/editor/:id',
         component: EditorComponent,
-        canActivate: [AuthGuardService]
+        /* canActivate: [AuthGuardService] */
+      },
+      {
+        path: 'envio-masivo/correo/plantilla',
+        component: PlantillaComponent,
+        /* canActivate: [AuthGuardService] */
       }
     ]
   }, 

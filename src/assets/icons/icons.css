@@ -250,3 +250,31 @@
     -webkit-mask-size: cover;
     mask-size: cover;
 }
+
+.select-multiple-marker:before {
+    fill: currentColor;
+    background-color: #fff;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(select-multiple-marker.svg) no-repeat 50% 50%;
+    mask: url(select-multiple-marker.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.selection-remove:before {
+    fill: currentColor;
+    background-color: #fff;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    content: '';
+    -webkit-mask: url(selection-remove.svg) no-repeat 50% 50%;
+    mask: url(selection-remove.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
